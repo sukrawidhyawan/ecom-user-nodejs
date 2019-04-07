@@ -38,10 +38,24 @@ const deleteUser = (req, res) => {
     })
 }
 
+const getUsers = (req, res) => {
+    User.find({}, (err, users) =>  {
+        if (err) return (err)
+        const userList = []
+    
+        users.forEach((user)=> {
+            userList.push(user)
+        })
+    
+        res.send({data: userList})
+      })
+}
+
 module.exports = {
     test,
     create,
     getUserById,
     updateUser,
     deleteUser,
+    getUsers,
 }
